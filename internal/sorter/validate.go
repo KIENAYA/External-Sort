@@ -7,7 +7,7 @@ import (
 	"strconv"
 )
 
-// ValidateSortedFile kiểm tra file có được sort đúng thứ tự số học hay không.
+
 func ValidateSortedFile(path string) error {
 	f, err := os.Open(path)
 	if err != nil {
@@ -24,7 +24,7 @@ func ValidateSortedFile(path string) error {
 		first := scanner.Text()
 		prev, err = strconv.Atoi(first)
 		if err != nil {
-			return fmt.Errorf("lỗi parse dòng đầu: %v", err)
+			return fmt.Errorf("parse error first line: %v", err)
 		}
 		lineNum = 1
 	}
@@ -34,18 +34,18 @@ func ValidateSortedFile(path string) error {
 		line := scanner.Text()
 		current, err := strconv.Atoi(line)
 		if err != nil {
-			return fmt.Errorf("lỗi parse dòng %d: %v", lineNum, err)
+			return fmt.Errorf("Parse fail at line %d: %v", lineNum, err)
 		}
 		if current < prev {
-			return fmt.Errorf("❌ Lỗi tại dòng %d: %d < %d", lineNum, current, prev)
+			return fmt.Errorf("Error at %d: %d < %d", lineNum, current, prev)
 		}
 		prev = current
 	}
 
 	if err := scanner.Err(); err != nil {
-		return fmt.Errorf("lỗi đọc file: %v", err)
+		return fmt.Errorf("Cannot read file: %v", err)
 	}
 
-	fmt.Printf("✅ File '%s' đã được sort đúng thứ tự số học.\n", path)
+	fmt.Printf("File '%s' is sorted.\n", path)
 	return nil
 }
