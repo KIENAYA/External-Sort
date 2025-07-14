@@ -72,7 +72,7 @@ func SortChunksParallel(inputFile, tmpDir string, chunkSize int) ([]string, erro
 }
 
 func sortAndWriteChunkParallel(chunk []string, tmpDir string, id int) (string, error) {
-	nums := make([]uint32, 0, len(chunk))
+	nums := make([]int, 0, len(chunk))
 	for _, line := range chunk {
 		n, err := strconv.Atoi(line)
 		if err != nil {
