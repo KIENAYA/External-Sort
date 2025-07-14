@@ -101,7 +101,7 @@ func MergeChunksWithBatch(files []string, output string, batchSize int) error {
 	}
 
 	var sb strings.Builder
-	sb.Grow(12 * batchSize) 
+	sb.Grow(11 * batchSize) 
 
 	for minHeap.Len() > 0 {
 		item := heap.Pop(minHeap).(*ItemBatch)
