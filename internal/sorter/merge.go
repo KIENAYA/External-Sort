@@ -10,11 +10,11 @@ import (
 
 
 type ItemBatch struct {
-	value  int           // Giá trị hiện tại
-	index  int           // Index hiện tại trong batch
-	batch  []int         // Batch dữ liệu
-	file   *os.File      // File đang đọc
-	reader *bufio.Reader // Reader đang sử dụng
+	value  int           
+	index  int           
+	batch  []int         
+	file   *os.File      
+	reader *bufio.Reader
 }
 
 
@@ -102,7 +102,7 @@ func MergeChunksWithBatch(files []string, output string, batchSize int) error {
 	}
 
 	var sb strings.Builder
-	sb.Grow(12 * batchSize) // sơ bộ cấp phát
+	sb.Grow(12 * batchSize) 
 
 	for minHeap.Len() > 0 {
 		item := heap.Pop(minHeap).(*ItemBatch)
