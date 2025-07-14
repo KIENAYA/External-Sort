@@ -43,7 +43,7 @@ func readBatchInt(reader *bufio.Reader, _ []int, n int) ([]int, error) {
 		line, err := reader.ReadString('\n')
 		if err != nil {
 			if len(line) == 0 {
-				return lines, err // EOF hoặc lỗi
+				return lines, err 
 			}
 			line = strings.TrimSpace(line)
 			if num, parseErr := strconv.Atoi(line); parseErr == nil {
