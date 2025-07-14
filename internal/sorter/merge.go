@@ -67,13 +67,12 @@ func MergeChunksWithBatch(files []string, output string, batchSize int) error {
 	}
 	defer out.Close()
 
-	writer := bufio.NewWriterSize(out, 16*1024*1024) // buffer 16MB
+	writer := bufio.NewWriterSize(out, 16*1024*1024) 
 	defer writer.Flush()
 
 	minHeap := &MinHeap{}
 	heap.Init(minHeap)
 
-	// Mỗi file tạo batch riêng
 	for _, path := range files {
 		f, err := os.Open(path)
 		if err != nil {
