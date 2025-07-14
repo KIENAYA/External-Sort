@@ -1,4 +1,4 @@
-package sorter // bạn nên thêm dòng này nếu chia file
+package sorter 
 
 import (
 	"bufio"
