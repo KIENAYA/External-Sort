@@ -19,7 +19,7 @@ type Config struct {
 func LoadEnv(path string) (*Config, error) {
 	err := godotenv.Load(path)
 	if err != nil {
-		log.Printf("⚠️ Không tìm thấy .env file: %v", err)
+		log.Printf("Cannot find .env file: %v", err)
 	}
 
 	getInt := func(key string, defaultVal int) int {
