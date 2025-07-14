@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-// ItemBatch đại diện cho batch đang xử lý từ một file
+
 type ItemBatch struct {
 	value  int           // Giá trị hiện tại
 	index  int           // Index hiện tại trong batch
@@ -17,7 +17,7 @@ type ItemBatch struct {
 	reader *bufio.Reader // Reader đang sử dụng
 }
 
-// MinHeap là heap tối thiểu theo giá trị
+
 type MinHeap []*ItemBatch
 
 func (h MinHeap) Len() int           { return len(h) }
@@ -36,7 +36,7 @@ func (h *MinHeap) Pop() any {
 	return item
 }
 
-// Đọc batch n dòng từ reader, trả về slice []int
+
 func readBatchInt(reader *bufio.Reader, _ []int, n int) ([]int, error) {
 	lines := make([]int, 0, n)
 	for i := 0; i < n; i++ {
@@ -59,7 +59,7 @@ func readBatchInt(reader *bufio.Reader, _ []int, n int) ([]int, error) {
 	return lines, nil
 }
 
-// MergeChunksWithBatch thực hiện merge k-way từ nhiều file tạm thành 1 file output
+
 func MergeChunksWithBatch(files []string, output string, batchSize int) error {
 	out, err := os.Create(output)
 	if err != nil {
@@ -101,7 +101,6 @@ func MergeChunksWithBatch(files []string, output string, batchSize int) error {
 		})
 	}
 
-	// Sử dụng strings.Builder để gom nội dung trước khi ghi
 	var sb strings.Builder
 	sb.Grow(12 * batchSize) // sơ bộ cấp phát
 
@@ -137,7 +136,6 @@ func MergeChunksWithBatch(files []string, output string, batchSize int) error {
 		}
 	}
 
-	// Ghi phần còn lại
 	if sb.Len() > 0 {
 		writer.WriteString(sb.String())
 	}
